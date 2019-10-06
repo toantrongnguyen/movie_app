@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -83,6 +85,8 @@ class RegisterController extends Controller
 
         $this->create($request->all());
 
-        return ['access' => '123'];
+        return [
+            'message' => 'Successfully created user!'
+        ];
     }
 }
