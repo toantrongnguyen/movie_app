@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  application:
+    image: debian
+    volumes:
+      - ./:/var/www/app
+  mysql:
+    restart: always
+    image: mysql:5.7
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+    expose:
+      - "3306"
+    environment:
+      MYSQL_DATABASE: pay_create
+      MYSQL_USER: pay_create
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: root
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8000:8080
