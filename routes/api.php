@@ -20,5 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/movies', 'MovieController@index')->name('movie.index');
 
+Route::get('/test', 'MovieController@test')->name('movie.test');
+
 Route::post('/register', 'Auth\RegisterController@registerUser')->name('register');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
