@@ -15,15 +15,15 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('overview');
-            $table->dateTime('release_date');
-            $table->float('popularity');
-            $table->float('vote_average');
-            $table->integer('vote_count');
-            $table->string('poster_path');
-            $table->string('backdrop_path');
-            $table->string('original_language');
+            $table->string('title')->nullable();
+            $table->text('overview')->nullable();
+            $table->dateTime('release_date')->nullable();
+            $table->float('popularity')->nullable();
+            $table->float('vote_average')->nullable();
+            $table->integer('vote_count')->nullable();
+            $table->string('poster_path')->nullable();
+            $table->string('backdrop_path')->nullable();
+            $table->string('original_language')->nullable();
             $table->timestamps();
         });
     }
