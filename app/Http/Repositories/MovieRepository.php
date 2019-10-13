@@ -26,7 +26,7 @@ class MovieRepository
 
         $query = $this->movie
             ->with(['genres' => function ($query) {
-                $query->select('genre_title');
+                $query->select('id','name');
             }])
             ->limit(config('common.item_per_page'))
             ->offset(config('common.item_per_page') * ($page - 1));

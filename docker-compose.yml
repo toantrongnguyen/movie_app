@@ -26,8 +26,8 @@ services:
     volumes:
       - ./.docker/mysql:/var/lib/mysql
       - ./mysql/my.cnf:/etc/mysql/my.cnf
-    # ports:
-      # - "3306:3306"
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: movie_app
       MYSQL_ROOT_PASSWORD: 123456

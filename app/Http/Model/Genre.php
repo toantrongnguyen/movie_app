@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Genre extends Model
 {
     protected $fillable = [
-        'genre_title',
+        'name',
     ];
 
     protected $hidden = [
