@@ -13,16 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user', 'UserController@index')->name('user.index');
+    Route::post('/user/change-password', 'UserController@changePassword')->name('user.change-password');
+    Route::post('/user/update', 'UserController@update')->name('user.update');
 });
 
+Route::post('/register', 'Auth\RegisterController@registerUser')->name('register');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::get('/feature_movie', 'MovieController@featureMovie')->name('movie.feature_movie');
 Route::get('/movies', 'MovieController@index')->name('movie.index');
 Route::get('/search', 'MovieController@search')->name('movie.search');
-
-Route::get('/test', 'MovieController@test')->name('movie.test');
-
-Route::post('/register', 'Auth\RegisterController@registerUser')->name('register');
-Route::post('/login', 'Auth\LoginController@login')->name('login');
