@@ -16,8 +16,18 @@ class MovieService
         return $this->repository->all();
     }
 
-    public function getList()
+    public function getList($params)
     {
-        return $this->repository->getList();
+        return $this->repository->getList($params);
+    }
+
+    public function search($search)
+    {
+        return $this->repository->search($search);
+    }
+
+    public function getFeatureMovie()
+    {
+        return $this->repository->getFeatureMovie();
     }
 }

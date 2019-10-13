@@ -24,6 +24,7 @@ class CreateMoviesTable extends Migration
             $table->string('poster_path')->nullable();
             $table->string('backdrop_path')->nullable();
             $table->string('original_language')->nullable();
+            $table->boolean('is_feature_movie')->default(false);
             $table->timestamps();
         });
     }

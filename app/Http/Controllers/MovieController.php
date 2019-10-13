@@ -13,10 +13,28 @@ class MovieController extends Controller
         $this->movieService = $movieService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $movies = $this->movieService->getList();
+        $query = $request->query();
+        $params = [];
+        $params['page'] = $query['page'] ?? 1;
+        $params['sort'] = $query['sort'] ?? 0;
+        $params['order'] = $query['order'] ?? config('common.order.asc');
+        $data = $this->movieService->getList($params);
+        return $data;
+    }
 
-        return ['movies' => $movies];
+    public function search(Request $request)
+    {
+        $search = trim($request->query('search', ''));
+
+        return $this->movieService->search($search);
+    }
+
+    public function featureMovie(Request $request)
+    {
+        $data = $this->movieService->getFeatureMovie();
+
+        return $data;
     }
 }

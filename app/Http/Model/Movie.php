@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     protected $fillable = [
-        'movie_title',
-        'movie_description',
-        'movie_release_date',
+        'title',
+        'overview',
     ];
 
     protected $hidden = [
