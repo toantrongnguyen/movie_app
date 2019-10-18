@@ -60,6 +60,11 @@ class MovieRepository
         return $this->movie->find($id);
     }
 
+    public function show($id)
+    {
+        return $this->movie->find($id);
+    }
+
     public function search($search)
     {
         return $this->movie

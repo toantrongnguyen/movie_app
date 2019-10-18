@@ -24,6 +24,12 @@ class MovieController extends Controller
         return $data;
     }
 
+    public function show(Request $request, $id)
+    {
+        $data = $this->movieService->show($id);
+        return $data;
+    }
+
     public function search(Request $request)
     {
         $search = trim($request->query('search', ''));

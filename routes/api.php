@@ -24,4 +24,5 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::get('/feature_movie', 'MovieController@featureMovie')->name('movie.feature_movie');
 Route::get('/movies', 'MovieController@index')->name('movie.index');
+Route::get('/movies/{id}', 'MovieController@show')->name('movie.show');
 Route::get('/search', 'MovieController@search')->name('movie.search');

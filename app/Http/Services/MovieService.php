@@ -16,6 +16,11 @@ class MovieService
         return $this->repository->all();
     }
 
+    public function show($id)
+    {
+        return $this->repository->show($id);
+    }
+
     public function getList($params)
     {
         return $this->repository->getList($params);
