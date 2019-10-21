@@ -26,3 +26,5 @@ Route::get('/feature_movie', 'MovieController@featureMovie')->name('movie.featur
 Route::get('/movies', 'MovieController@index')->name('movie.index');
 Route::get('/movies/{id}', 'MovieController@show')->name('movie.show');
 Route::get('/search', 'MovieController@search')->name('movie.search');
+
+Route::get('/bookable_seat/{id}', 'BookableSeatController@show')->name('bookable_seat.show');
