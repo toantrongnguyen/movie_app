@@ -28,3 +28,4 @@ Route::get('/movies/{id}', 'MovieController@show')->name('movie.show');
 Route::get('/search', 'MovieController@search')->name('movie.search');
 
 Route::get('/bookable_seat/{id}', 'BookableSeatController@show')->name('bookable_seat.show');
+Route::post('/bookable_seat/{id}', 'BookableSeatController@update')->name('bookable_seat.update');

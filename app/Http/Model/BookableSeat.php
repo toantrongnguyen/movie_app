@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class BookableSeat extends Model
 {
     protected $fillable = [
-        'avaiable_seat',
-        'movie_id',
+        'available_seat',
     ];
 
     protected $hidden = [
         'pivot'
     ];
 
-    public function genres()
+    public function movie()
     {
-        return $this->belongsTo(Genre::class, 'movie');
+        return $this->belongsTo(Movie::class);
     }
 }

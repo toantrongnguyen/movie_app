@@ -53,24 +53,20 @@ services:
       - 8000:8080
     networks:
       - app-network
-  node:
-    version: '3'
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: nodejs
-    container_name: node
-    restart: unless-stopped
-    env_file: .env
-    ports:
-      - "3030:8080"
-    volumes:
-      - ./node_server:/home/node_server
-      - ./node_server/node_modules:/home/node_server
-    networks:
-      - app-network
-    # working_dir: /home/node_server
-    command: /home/node_server/node_modules/.bin/nodemon server.js
+  # node:
+  #   image: nodejs
+  #   container_name: node
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   ports:
+  #     - "3030:8080"
+  #   volumes:
+  #     - ./node_server:/home/node_server
+  #     - ./node_server/node_modules:/home/node_server
+  #   networks:
+  #     - app-network
+  #   # working_dir: /home/node_server
+  #   command: /home/node_server/node_modules/.bin/nodemon server.js
 networks:
   app-network:
     driver: bridge

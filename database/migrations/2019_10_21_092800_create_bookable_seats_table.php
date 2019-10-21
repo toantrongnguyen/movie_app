@@ -15,7 +15,7 @@ class CreateBookableSeatsTable extends Migration
     {
         Schema::create('bookable_seats', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('movie_id');
+            $table->integer('movie_id')->nullable();
             $table->json('available_seat');
             $table->timestamps();
         });

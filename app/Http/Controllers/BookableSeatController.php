@@ -19,7 +19,25 @@ class BookableSeatController extends Controller
 
     public function show(Request $request, $id)
     {
-        $data = $this->bookableSeatService->show($id) ?? [];
+        $data = $this->bookableSeatService->show($id);
+
+        if (!$data) {
+            $data = $this->bookableSeatService->create($id);
+        }
+
         return $data;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $input = $request->input();
+
+        $result = $this->bookableSeatService->updateSeat($id, $input);
+
+        if ($result) {
+            return ['status' => 'Done'];
+        }
+
+        return ['status' => 'Fail'];
     }
 }

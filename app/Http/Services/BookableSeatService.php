@@ -20,4 +20,14 @@ class BookableSeatService
     {
         return $this->repository->show($id);
     }
+
+    public function create($id)
+    {
+        return $this->repository->create($id);
+    }
+
+    public function updateSeat($id, $input)
+    {
+        return $this->repository->updateSeat($id, $input);
+    }
 }

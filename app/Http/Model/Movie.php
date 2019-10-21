@@ -19,4 +19,9 @@ class Movie extends Model
     {
         return $this->belongsToMany(Genre::class, 'movie_genre');
     }
+
+    public function bookable_seats()
+    {
+        return $this->hasMany(BookableSeat::class);
+    }
 }
