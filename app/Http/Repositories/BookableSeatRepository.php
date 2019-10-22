@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\BookableSeat;
 use App\Movie;
+use Error;
 
 class BookableSeatRepository
 {
@@ -30,15 +31,15 @@ class BookableSeatRepository
 
     public function create($id)
     {
-        $numberOfRow = rand(4,16);
-        $numberOfColumn = rand(4,16);
+        $numberOfRow = rand(4, 16);
+        $numberOfColumn = rand(4, 16);
 
         $seat = [];
 
         for ($i = 0; $i < $numberOfRow; $i++) {
             $row = [];
             for ($j = 0; $j < $numberOfColumn; $j++) {
-                array_push($row, rand(0, 1));
+                array_push($row, rand(0, 1) == 0 ? null : 1);
             }
             array_push($seat, $row);
         }
@@ -54,15 +55,32 @@ class BookableSeatRepository
         return $data;
     }
 
-    public function updateSeat($id, $input)
+    public function updateSeat($id, $input, $userId)
     {
         $bookable_seat = $this->movie
             ->find($id)
             ->bookable_seats()
             ->first();
 
-        dd($input);
+        $available_seat = json_decode($bookable_seat->available_seat);
 
-        return $data;
+        foreach ($input as $seat) {
+            $x = $seat['x'];
+            $y = $seat['y'];
+            $value = $seat['value'];
+
+            $currentValue = $available_seat[$y][$x];
+
+            if (!$currentValue || $currentValue == $userId) {
+                $available_seat[$y][$x] = $value ? $userId : null;
+            } else {
+                return false;
+            }
+        }
+
+        $bookable_seat->available_seat = json_encode($available_seat);
+        $bookable_seat->save();
+
+        return $available_seat;
     }
 }

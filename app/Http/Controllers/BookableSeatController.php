@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\BookableSeatService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BookableSeatController extends Controller
 {
@@ -30,14 +32,18 @@ class BookableSeatController extends Controller
 
     public function update(Request $request, $id)
     {
-        $input = $request->input();
+        $input = $request->input('seat');
 
-        $result = $this->bookableSeatService->updateSeat($id, $input);
-
-        if ($result) {
-            return ['status' => 'Done'];
+        if (!$input) {
+            return response(['message' => 'Bad payload'], Response::HTTP_BAD_REQUEST);
         }
 
-        return ['status' => 'Fail'];
+        $result = $this->bookableSeatService->updateSeat($id, $input, Auth::user()->id);
+
+        if ($result) {
+            return response(['status' => 'Done', 'data' => $result]);
+        }
+
+        return response(['message' => 'Unauthorize to implement that'], Response::HTTP_FORBIDDEN);
     }
 }

@@ -9,4 +9,5 @@
 
 ## Movie app server using Laravel
 php artisan passport:install
+php artisan passport:client --personal
 php artisan key:generate

@@ -17,6 +17,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', 'UserController@index')->name('user.index');
     Route::post('/user/change-password', 'UserController@changePassword')->name('user.change-password');
     Route::post('/user/update', 'UserController@update')->name('user.update');
+    Route::post('/bookable_seat/{id}', 'BookableSeatController@update')->name('bookable_seat.update');
 });
 
 Route::post('/register', 'Auth\RegisterController@registerUser')->name('register');
@@ -28,4 +29,3 @@ Route::get('/movies/{id}', 'MovieController@show')->name('movie.show');
 Route::get('/search', 'MovieController@search')->name('movie.search');
 
 Route::get('/bookable_seat/{id}', 'BookableSeatController@show')->name('bookable_seat.show');
-Route::post('/bookable_seat/{id}', 'BookableSeatController@update')->name('bookable_seat.update');
