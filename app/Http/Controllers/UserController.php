@@ -30,7 +30,9 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string'],
-            'avatar' => ['file'],
+            'phone_number' => ['string'],
+            'address' => ['string'],
+            'visa_number' => ['string'],
         ]);
 
         if ($validator->fails()) {
@@ -38,7 +40,10 @@ class UserController extends Controller
         }
 
         $input = [
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'phone_number' => $request->input('phone_number'),
+            'address' => $request->input('address'),
+            'visa_number' => $request->input('visa_number'),
         ];
 
         if ($request->hasFile('avatar')) {
@@ -47,6 +52,8 @@ class UserController extends Controller
                 $request->file('avatar')
             );
             $input['avatar'] = $path;
+        } else {
+            $input['avatar'] = null;
         }
 
         $result = $this->userService->updateUser($request->user()->email, $input);
