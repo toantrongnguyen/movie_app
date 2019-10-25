@@ -46,14 +46,16 @@ class UserController extends Controller
             'visa_number' => $request->input('visa_number'),
         ];
 
+        if ($request->input('avatar') == 'delete') {
+            $input['avatar'] = null;
+        }
+
         if ($request->hasFile('avatar')) {
             $path = Storage::putFile(
                 'public/avatars',
                 $request->file('avatar')
             );
             $input['avatar'] = $path;
-        } else {
-            $input['avatar'] = null;
         }
 
         $result = $this->userService->updateUser($request->user()->email, $input);
